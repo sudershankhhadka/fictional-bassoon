@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>SignUp</title>
+ <!-- Font Icon -->
+    <link rel="stylesheet" href="/login/fonts/material-icon/css/material-design-iconic-font.min.css">
+
+    <!-- Main css -->
+    <link rel="stylesheet" href="/login/css/style.css">
+</head>
+<body>
+	<div class="container">
+
+
+		<!-- Sign up form -->
+		<section class="signup">
+			<div class="container">
+				<div class="signup-content">
+					<div class="signup-form">
+						<h2 class="form-title">Sign up</h2>
+						<form method="POST" action = "/signup" class="register-form" id="register-form">
+							<div class="form-group">
+								<label for="name"><i
+									class="zmdi zmdi-account material-icons-name"></i></label> <input
+									type="text" name="fname" id="name" placeholder="Your First Name" />
+							</div>
+							<div class="form-group">
+								<label for="name"><i
+									class="zmdi zmdi-account material-icons-name"></i></label> <input
+									type="text" name="lname" id="name" placeholder="Your Last Name" />
+							</div>
+							<div class="form-group">
+								<label for="email"><i class="zmdi zmdi-email"></i></label> <input
+									type="email" name="email" id="email" placeholder="Your Email" />
+							</div>
+							<div class="form-group">
+								<label for="pass"><i class="zmdi zmdi-lock"></i></label> <input
+									type="password" name="password" id="pass" placeholder="Password" />
+							
+	
+							<div class="form-group form-button">
+								<input type="submit" name="signup" id="signup"
+									class="form-submit" value="Register" />
+							</div>
+						</form>
+					</div>
+					<div class="signup-image">
+						<figure>
+							<img src="/login/images/signup-image.jpg" alt="sing up image">
+						</figure>
+						<a href="/login" class="signup-image-link">I am already member</a>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+
+<!-- 
+
+	<h1>User Registration</h1>
+	<hr>
+	<form action="/signup" method="post">
+		First Name: <input type="text" name="fname" /><br>
+		<br> Last Name: <input type="text" name="lname" /><br>
+		<br> Email: <input type="email" name="email" /> <br>
+		<br> Password: <input type="password" name="password" /><br>
+		<br> <input type="submit" value="signup" /> <br>
+		<br> <a href="/login">Already have an account?</a>
+	</form> -->
+</body>
+</html>

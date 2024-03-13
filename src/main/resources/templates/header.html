@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+
+</head>
+<body>
+	<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="javascript:void(0)">EMP-DEPT</a>
+			<button class="navbar-toggler" type="button"
+				data-bs-toggle="collapse" data-bs-target="#mynavbar">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="mynavbar">
+				<ul class="navbar-nav me-auto">
+					<li class="nav-item"><a class="nav-link" href="/department">Add
+							Department</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="/departmentList">List Department</a></li>
+					<li class="nav-item"><a class="nav-link" href="/employee">AddEmployee</a>
+					</li>
+					<li class="nav-item"><a class="nav-link" href="/employeeList">Employee
+							List</a></li>
+					<li class="nav-item"><a class="nav-link" href="/gallery">Gallery</a>
+					</li>
+					<li class="nav-item"><a class="nav-link" href="/upload">Upload</a>
+					</li>
+					<li class="nav-item"><a class="nav-link" href="/contact">Contact</a>
+
+					</li>
+					<li class="nav-item"><a class="nav-link" href="/profile">Profile</a>
+					</li>
+				</ul>
+				<form class="d-flex" action="/logout">
+				<p style="color:red">Welcome : [[${session.validuser.fname}]]</p> &nbsp;
+					<button class="btn btn-danger" type="submit">Logout</button>
+				</form>
+			</div>
+		</div>
+	</nav>
+
+</body>
+</html>

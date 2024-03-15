@@ -13,9 +13,16 @@ import com.bway.SpringCoreDemo.model.User;
 import com.bway.SpringCoreDemo.service.UserService;
 
 import jakarta.servlet.http.HttpSession;
+import lombok.extern.java.Log;
 
+
+
+@Log
 @Controller
 public class userController {
+	
+	
+	
 	
 	@Autowired
 	private UserService userService;
@@ -31,6 +38,8 @@ public class userController {
 
 			User usr = userService.UserLogin(user.getEmail(), user.getPassword());
 			if(usr != null) {
+				
+				log.info("-----------user login success-----------");
 				session.setAttribute("validuser", usr);
 				session.setMaxInactiveInterval(120);
 				//model.addAttribute("uname",usr.getFname());
@@ -38,8 +47,8 @@ public class userController {
 			}	
 			{
 			
-			
-         model.addAttribute("error", "Invalid email or password"); // Add error message
+			log.info("--------------login failed-----------");
+			model.addAttribute("error", "Invalid email or password"); // Add error message
 	        return "login"; // Return login page
 	        }
 
@@ -57,6 +66,7 @@ public class userController {
 		}
 		@GetMapping("/logout")
 		public String logout(HttpSession session) {
+			log.info("----------logout success-------");
 			session.invalidate();
 			return "login";
 		}

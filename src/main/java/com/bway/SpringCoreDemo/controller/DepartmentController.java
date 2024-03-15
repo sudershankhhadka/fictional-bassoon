@@ -8,9 +8,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.bway.SpringCoreDemo.model.Department;
 import com.bway.SpringCoreDemo.service.DepartmentService;
+import com.bway.SpringCoreDemo.utils.DepartmentExcelView;
+import com.bway.SpringCoreDemo.utils.DepartmentPdfView;
 
 @Controller
 public class DepartmentController {
@@ -49,6 +52,27 @@ public class DepartmentController {
 	public String update(@ModelAttribute Department dept) {
 		deptservice.updateDept(dept);
 		return "redirect:/departmentList";
+	}
+	
+	//for exporting excels and pdfs
+	
+	@GetMapping("/dept/excel")
+	public ModelAndView excel() {
+		
+		ModelAndView mv  = new ModelAndView();
+		mv.addObject("dList",deptservice.getAllDepts());
+		mv.setView(new DepartmentExcelView());
+		
+		return mv;
+		
+	}
+	
+	@GetMapping("dept/pdf")
+	public ModelAndView pdf() {
+		ModelAndView mv  = new ModelAndView();
+		mv.addObject("dList",deptservice.getAllDepts());
+		mv.setView(new DepartmentPdfView());
+		return mv;
 	}
 	
 }

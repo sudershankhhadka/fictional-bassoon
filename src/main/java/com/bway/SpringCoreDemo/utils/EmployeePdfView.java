@@ -86,6 +86,9 @@ public class EmployeePdfView extends AbstractPdfView {
 			table.addCell(spec.getEmail());
 			table.addCell(spec.getPhone());
 			table.addCell(spec.getPost());
+			table.addCell(spec.getDob().toString());
+
+			
 		
 		
 			

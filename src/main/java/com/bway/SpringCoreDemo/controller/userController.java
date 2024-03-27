@@ -1,5 +1,7 @@
 package com.bway.SpringCoreDemo.controller;
 
+import java.io.IOException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Controller;
@@ -8,9 +10,11 @@ import org.springframework.util.DigestUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.bway.SpringCoreDemo.model.User;
 import com.bway.SpringCoreDemo.service.UserService;
+import com.bway.SpringCoreDemo.utils.VerifyRecaptcha;
 
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.java.Log;
@@ -33,7 +37,10 @@ public class userController {
 		
 		
 		@PostMapping("/login")
-		public String postLogin(@ModelAttribute User user,Model model,HttpSession session) {
+		public String postLogin(@ModelAttribute User user,Model model,HttpSession session,@RequestParam("g-recaptcha-response") String gcapCode) throws IOException {
+			if(VerifyRecaptcha.verify(gcapCode)) {
+				
+			
 			user.setPassword(DigestUtils.md5DigestAsHex(user.getPassword().getBytes()));
 
 			User usr = userService.UserLogin(user.getEmail(), user.getPassword());
@@ -44,13 +51,18 @@ public class userController {
 				session.setMaxInactiveInterval(120);
 				//model.addAttribute("uname",usr.getFname());
 				return "home";
+			}
+			else {
+				log.info("--------------login failed-----------");
+				model.addAttribute("error", "Invalid Credentials"); // Add error message
+		        return "login"; // Return login page
+			}
+			
 			}	
-			{
 			
 			log.info("--------------login failed-----------");
-			model.addAttribute("error", "Invalid email or password"); // Add error message
+			model.addAttribute("error", "Are You Robot?"); // Add error message
 	        return "login"; // Return login page
-	        }
 
 		}
 		@GetMapping("/signup")
